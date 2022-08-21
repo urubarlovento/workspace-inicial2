@@ -11,10 +11,4 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
-    document.getElementsByTagName("body").addEventListener("load", function(){
-//        if(userid == ""){
-//        window.location.replace("login.html");
-//        }
-alert('ENTRANDO ')    
-})
 });
