@@ -45,13 +45,13 @@ let getJSONData = function(url){
 function getUserEmail(){
 
   userEmail= localStorage.getItem("userEmailStorage");
-  console.log(userEmail)
+  // console.log(userEmail)
   if (userEmail != null){
   
       let htmlContentToAppend = `<a class="nav-link" href="my-profile.html">${userEmail}</a>`
-      console.log(htmlContentToAppend)
+      // console.log(htmlContentToAppend)
       document.getElementsByClassName("nav-item")[3].innerHTML = htmlContentToAppend
-      console.log(document.getElementsByClassName("nav-item")[3])
+      // console.log(document.getElementsByClassName("nav-item")[3])
   }
   else{
       location.href = "login.html";

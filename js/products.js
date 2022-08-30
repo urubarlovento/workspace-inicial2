@@ -33,7 +33,8 @@ function showProductsList(){
         document.getElementById("products-list-container").innerHTML = htmlContentToAppend2 + htmlContentToAppend;
     
 }
-const CONSCAR_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+productNumber= localStorage.getItem("catID");
+let CONSCAR_URL = `https://japceibal.github.io/emercado-api/cats_products/${productNumber}.json`;
 
 document.addEventListener("DOMContentLoaded", function(e){
     getUserEmail()
