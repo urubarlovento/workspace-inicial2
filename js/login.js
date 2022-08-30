@@ -66,6 +66,7 @@ if(emptyfield()// && passwordhigher6() && matchPassword()&& checkbox_mark()
 ){
 setTimeout (loginSuccess,1000);
 showAlertSuccess();
+
 }
 else
 {
@@ -76,16 +77,23 @@ showAlertError();
 }
 
 function loginSuccess (){
-location.href = "inicio.html";
-}
-function reload (){
 location.href = "index.html";
 }
-
+function reload (){
+location.href = "login.html";
+}
+function setUserEmail(){
+  var userEmail = document.getElementById("email").value
+  console.log(userEmail)
+  localStorage.setItem("userEmailStorage", userEmail);
+      }
+ 
 
 //6. Add Event Listener
 
 regBtn.addEventListener("click", () => {
+  setUserEmail()
   general_Valid () 
+  
 })
 

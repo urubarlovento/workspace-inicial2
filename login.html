@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Inicio de sesión</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+  <div class="container">
+    <img src="img/login.png" alt="imagen de inicio de sesión" id="loginimage">
+    <main>
+      <div class="row mt-4">
+        <div class="col">
+          <h1 class="mb-3">Inicio de sesión</h1>
+          <hr class="my-4">
+          <div class="row g-3">
+            
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="password1" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password1" required minlength="6">
+            </div>
+
+            </div><br>
+            <button class="btn btn-primary" type="button" id="regBtn" value="register">Ingresar</button>
+
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <br>
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
+          2022</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p>Inicio de sesión satisfactorio</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="alert alert-danger alert-dismissible fade" role="alert" id="alert-danger">
+    <p>Error en el inicio de sesión. Verifique sus datos.</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/login.js"></script>
+</body>
+
+</html>
