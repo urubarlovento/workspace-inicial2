@@ -2,8 +2,8 @@
 function showProductsList(){
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < currentAutosArray.length; i++){
-        let product = currentAutosArray[i];
+    for(let i = 0; i < currentProductsArray.length; i++){
+        let product = currentProductsArray[i];
 
             htmlContentToAppend += `
             <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
@@ -34,17 +34,15 @@ function showProductsList(){
     
 }
 productNumber= localStorage.getItem("catID");
-let CONSCAR_URL = `https://japceibal.github.io/emercado-api/cats_products/${productNumber}.json`;
+let CATE_URL = `https://japceibal.github.io/emercado-api/cats_products/${productNumber}.json`;
 
 document.addEventListener("DOMContentLoaded", function(e){
     getUserEmail()
 
-    getJSONData(CONSCAR_URL).then(function(resultObj){
+    getJSONData(CATE_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            currentProductsArray = resultObj.data
-            console.log(currentProductsArray)
-            currentAutosArray = currentProductsArray.products
-            console.log(currentAutosArray)
+            currentCategoryArray = resultObj.data
+            currentProductsArray = currentCategoryArray.products
             showProductsList()
         }
     });
