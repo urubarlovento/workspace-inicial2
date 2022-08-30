@@ -1,23 +1,10 @@
-let userEmail = ''
-
-function getUserEmail(){
-
-    userEmail= localStorage.getItem("userEmailStorage");
-    console.log(userEmail)
-    if (userEmail != null){
-    
-        let htmlContentToAppend = `<a class="nav-link" href="my-profile.html">${userEmail}</a>`
-        console.log(htmlContentToAppend)
-        document.getElementById("userEmail").innerHTML = htmlContentToAppend
-    }
-    else{
-        location.href = "login.html";
-    }
-
-        }
-   
-  
-
+// Una vez cargada la página
+// Se adjudica la función de comprobación al botón ingresar
+// Pega un campo en la barra de navegación con el email y a su vez es un link al perfil de usuario
+// Una vez cargada la página:
+// Toma el email del usuario del Local Storage para ponerlo en la barra 
+// Si no lo tiene re dirige a la página de login
+// Luego carga las funciones de hacer click  sobre las categorías.
 
 document.addEventListener("DOMContentLoaded", function(){
     

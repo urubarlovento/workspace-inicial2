@@ -36,6 +36,8 @@ function showProductsList(){
 const CONSCAR_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
 document.addEventListener("DOMContentLoaded", function(e){
+    getUserEmail()
+
     getJSONData(CONSCAR_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductsArray = resultObj.data

@@ -28,6 +28,9 @@ function updateTotalCosts(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+    
+    getUserEmail()
+
     document.getElementById("productCountInput").addEventListener("change", function(){
         productCount = this.value;
         updateTotalCosts();
@@ -146,4 +149,5 @@ document.addEventListener("DOMContentLoaded", function(e){
             });
         }
     });
+
 });
