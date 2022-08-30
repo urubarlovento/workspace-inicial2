@@ -1,14 +1,17 @@
+
+//muestra una alerta de comprobación correcta
 function showAlertSuccess() {
   document.getElementById("alert-success").classList.add("show");
 }
 
+//muestra una alerta de error.
 function showAlertError() {
   document.getElementById("alert-danger").classList.add("show");
 }
 
 
-//1. Ningún campo puede estar vacío.
-    //a. generar una variable
+//Ningún campo puede estar vacío.
+    
 function emptyfield (){
 let fields = document.getElementsByTagName("input")
 
@@ -21,49 +24,13 @@ return true
 }
 
 
-
-//2. La contraseña debe tener al menos 6 caracteres.
-
-function passwordhigher6 () {
-let pass1 = document.getElementById("password1")
-if(pass1.value.length > 5)
-{
-return true
-}
-else{
-return false
-}
-}
-
-// 3. Los datos ingresados en "Contraseña" y "Repetir contraseña" deben ser iguales.
-
-function matchPassword() {  
-  let pass1 = document.getElementById("password1").value;  
-  let pass2 = document.getElementById("password2").value;  
-  if(pass1 != pass2)  
-  {   
-    return false
-  } else {  
-    return true
-  }  
-}
-
-
-//4. Se debe haber marcado el checkbox "Acepto los términos y condiciones del servicio."
-function checkbox_mark() {
-var checkbox_var = document.getElementById("terminos");
-if (checkbox_var.checked === true){
-  return true
-} else {
-   return false
-}
-}
-
-//5. Comprobación de todos los chequeos del punto 1 al 4
+// Comprobación de que todos los campos estén llenos. 
+//Ejecución de las funciones de fijar email, función con retardo de redirigir a index y mostrar una alerta de comprobación correcta. 
+//Sino recarga la página con retardo y muestra una alerta de error.
 
 function general_Valid () {
-if(emptyfield()// && passwordhigher6() && matchPassword()&& checkbox_mark()
-){
+if(emptyfield()){
+setUserEmail()
 setTimeout (loginSuccess,1000);
 showAlertSuccess();
 
@@ -75,13 +42,16 @@ setTimeout (reload,3000);
 showAlertError();
 }
 }
-
+// Re dirige a la página index
 function loginSuccess (){
 location.href = "index.html";
 }
+
+// Re carga la página de login
 function reload (){
 location.href = "login.html";
 }
+// Guarda el email en el Local Storage
 function setUserEmail(){
   var userEmail = document.getElementById("email").value
   console.log(userEmail)
@@ -89,10 +59,10 @@ function setUserEmail(){
       }
  
 
-//6. Add Event Listener
+//6. Se adjudica la función de comprobación al botón ingresar
 
 regBtn.addEventListener("click", () => {
-  setUserEmail()
+  
   general_Valid () 
   
 })
