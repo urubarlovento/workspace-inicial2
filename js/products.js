@@ -64,6 +64,11 @@ function sortAndShowProducts(sortCriteria, productsArray){
   showProductsList();
 }
 
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html"
+}
+
 
 
 function showProductsList(){
@@ -92,6 +97,7 @@ function showProductsList(){
                 </div>
             </div>
             `
+            console.log(product)
         
 
         }
