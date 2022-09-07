@@ -197,3 +197,15 @@ a.custom-card:hover {
     flex-direction: row;
     justify-content: space-around;
   }
+  .boton-send {
+    text-decoration:none;
+    font-weight:50px;
+    font-size:10px;
+    color:#ffffff;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:20px;
+    padding-right:20px;
+    background-color:#005BBB;
+    border-color: #ffffff;
+    }
