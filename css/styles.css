@@ -209,3 +209,18 @@ a.custom-card:hover {
     background-color:#005BBB;
     border-color: #ffffff;
     }
+  .card-img-prod {
+    width: 20rem;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+  }
+
+  .card1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 100%
+  }
