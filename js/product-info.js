@@ -5,6 +5,7 @@ let PRODUCT_INFO_URL_ESP = `https://japceibal.github.io/emercado-api/products/${
 // const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
 let PRODUCT_INFO_COMMENTS_URL_ESP = `https://japceibal.github.io/emercado-api/products_comments/${productNumber}.json`;
 
+// Función que pasa de un valor numerico a una cantidad de estrellas
 function showStars(rate){
     if (rate == 1)
     return `
@@ -24,7 +25,7 @@ function showStars(rate){
     <span style="color:yellow">★★★★★</span>`        
     }
     
-
+// Función que agrega el nuevo comentario realizado cómo un comentario más de los mostrados referentes al producto
 function sendCommit(){
   
     textCommit = document.getElementById("cuerpo").value
@@ -53,10 +54,12 @@ function sendCommit(){
 
  }
 
+
 document.addEventListener("DOMContentLoaded", function(e){
     
     getUserEmail()
 
+    // realiza la solicitud adecuada para obtener la información del producto
     getJSONData(PRODUCT_INFO_URL_ESP).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductInfoArray = resultObj.data
@@ -64,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             showProductInfo()
         }})
 
+    // realiza la solicitud adecuada para obtener los comentarios del producto
     getJSONData(PRODUCT_INFO_COMMENTS_URL_ESP).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductComentsArray = resultObj.data
@@ -71,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             showProductComents()
             }})
 
+// Se establece la función sendCommit al boton del formulario mediante su ID
             document.getElementById("regCommit").addEventListener("click", function(){
                 sendCommit ();
             });        
@@ -78,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 });
 
+// Función que pega la información del producto descargada en el HTML
 function showProductInfo(){
 
     let htmlContentToAppend = "";
@@ -165,6 +171,8 @@ function showProductInfo(){
     }
 
 
+// Función que pega todos los comentarios cargados desde el JSON
+// debajo de la descripción y fotos del producto.
 
     function showProductComents(){
 

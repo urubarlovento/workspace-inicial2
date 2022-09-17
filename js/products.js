@@ -9,7 +9,6 @@ let minCount = undefined;
 let maxCount = undefined;
 
 function sortProducts(criteria, array){
-  console.log(array)
     let result = [];
     if (criteria === ORDER_DESC_BY_COST)
     {
@@ -50,20 +49,18 @@ function sortProducts(criteria, array){
 
 //funcion que manda a ordenar el arreglo
 function sortAndShowProducts(sortCriteria, productsArray){
-  console.log(currentProductsArray)
 
   currentSortCriteria = sortCriteria;
 
   if(productsArray != undefined){
     currentProductsArray = productsArray ;
   }
-  console.log(productsArray)
   currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
-  console.log(currentProductsArray)
   //Muestro los productos ordenados
   showProductsList();
 }
-
+// para que cada vez que el usuario seleccione un producto, 
+// su identificador se guarde en el almacenamiento local y se redirija a product-info.html
 function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html"
@@ -152,9 +149,7 @@ document.addEventListener("DOMContentLoaded", function(e){
   document.getElementById("rangeFilterCount").addEventListener("click", function(){
    
     minCount = document.getElementById("rangeFilterCountMin").value;
-    console.log(minCount)
     maxCount = document.getElementById("rangeFilterCountMax").value;
-    console.log(maxCount)
 
     if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
         minCount = parseInt(minCount);
