@@ -48,7 +48,19 @@ function getUserEmail(){
   // console.log(userEmail)
   if (userEmail != null){
   
-      let htmlContentToAppend = `<a class="nav-link" href="my-profile.html">${userEmail}</a>`
+      let htmlContentToAppend = `
+      <div class="dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
+      ${userEmail}
+      </a>
+    
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
+        <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+        <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+        <li><a class="dropdown-item" href="logout.html">Cerrar sesión</a></li>
+      </ul>
+    </div>
+      `
       // console.log(htmlContentToAppend)
       document.getElementsByClassName("nav-item")[3].innerHTML = htmlContentToAppend
       // console.log(document.getElementsByClassName("nav-item")[3])
@@ -58,3 +70,5 @@ function getUserEmail(){
   }
 
       }
+
+

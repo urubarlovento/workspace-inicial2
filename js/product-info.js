@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             currentProductInfoArray = resultObj.data
             console.log(currentProductInfoArray)
             showProductInfo()
+            showRelatedProducts()
         }})
 
     // realiza la solicitud adecuada para obtener los comentarios del producto
@@ -157,9 +158,6 @@ function showProductInfo(){
 
         document.getElementById("containerImage").innerHTML = htmlContentToAppend2;
         
-
-
-
     }
 
 
@@ -199,5 +197,25 @@ function showProductInfo(){
     }
 
 
+    function showRelatedProducts(){
+        relatedProductsArray =currentProductInfoArray.relatedProducts
+        console.log(relatedProductsArray)
+      let  htmlContentToAppend4 =""
+        for(let i = 0; i < relatedProductsArray.length; i++){
+            let relatedProduct = relatedProductsArray[i];
+    
+        htmlContentToAppend4 += `
+    
+        <div class="card" style="width: 18rem;">
+        <img src="${relatedProduct.image}" class="card-img-top" alt="imagen representativa de ${relatedProduct.name} ">
+        <div class="card-body">
+          <p class="card-text">${relatedProduct.name}.</p>
+        </div>
+      </div>
+        `
+        }
+        document.getElementById("relatedProducts").innerHTML = htmlContentToAppend4
 
+    }
+    
 
