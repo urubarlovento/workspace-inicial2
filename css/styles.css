@@ -224,3 +224,16 @@ a.custom-card:hover {
     flex-direction: column;
     min-width: 100%
   }
+
+  .carousel {
+    width: 70%;
+    max-width: 50em;
+}
+/* .carousel-inner img{
+  width: 40px;
+  
+} */
+/* #mainPhotos {
+  margin:0px auto ;
+  text-align: center;
+} */

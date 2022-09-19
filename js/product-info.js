@@ -29,7 +29,7 @@ function showStars(rate){
 function sendCommit(){
   
     textCommit = document.getElementById("cuerpo").value
-       console.log(textCommit)
+     
     
        console.log(userEmail)
        console.log(document.getElementById("stars").value)
@@ -134,37 +134,29 @@ function showProductInfo(){
     
     `
     document.getElementsByClassName("container")[1].innerHTML = htmlContentToAppend
-    imageArray = currentProductInfoArray.images
-    let htmlContentToAppend2 = `<div class="row">
-        <div class="d-flex w-100 justify-content-between">
-            <h4 class="mb-1">Imagenes ilustrativas</h4>
-         </div>
     
-         <div>
-
-      
-
-               <div class="card1"  style="flex-direction:row ">
-               `
-    for(let i = 0; i < imageArray.length; i++){
+    
+    imageArray = currentProductInfoArray.images
+    let htmlContentToAppend2 = `
+    <div class="carousel-item active col-auto">
+    <img src="${currentProductInfoArray.images[0]}" class="d-block w-100" 
+    alt="Imagen representativa del producto ${currentProductInfoArray.name}">
+  </div>
+`;
+   
+    for(let i = 0; i+1 < imageArray.length; i++){
         let category = imageArray[i];
 
     htmlContentToAppend2 += `
-                <div>
-                 <img class=" card-img-prod" src=${currentProductInfoArray.images[i]}
-                 alt="Imgagen representativa del producto ${currentProductInfoArray.name}">
-                 </div>
+                 <div class="carousel-item">
+                 <img src="${currentProductInfoArray.images[i+1]}" class="d-block w-100" 
+                 alt="Imagen representativa del producto ${currentProductInfoArray.name}">
+               </div>
     `
     }
-    htmlContentToAppend2 += `
-                            </div>
-                            </div>
-     
 
-  
-                            </main>`
-
-        document.getElementsByClassName("container")[1].innerHTML += htmlContentToAppend2;
+        document.getElementById("containerImage").innerHTML = htmlContentToAppend2;
+        
 
 
 
