@@ -5,6 +5,12 @@ let PRODUCT_INFO_URL_ESP = `https://japceibal.github.io/emercado-api/products/${
 // const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
 let PRODUCT_INFO_COMMENTS_URL_ESP = `https://japceibal.github.io/emercado-api/products_comments/${productNumber}.json`;
 
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+  }
+
+
 // Función que pasa de un valor numerico a una cantidad de estrellas
 function showStars(rate){
     if (rate == 1)
@@ -206,7 +212,7 @@ function showProductInfo(){
     
         htmlContentToAppend4 += `
     
-        <div class="card" style="width: 18rem;">
+        <div onclick="setProdID(${relatedProduct.id})"  class="card mb-4 shadow-sm cursor-active href="https://" style="width: 18rem;">
         <img src="${relatedProduct.image}" class="card-img-top" alt="imagen representativa de ${relatedProduct.name} ">
         <div class="card-body">
           <p class="card-text">${relatedProduct.name}.</p>
