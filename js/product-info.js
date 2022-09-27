@@ -63,23 +63,21 @@ function sendCommit(){
 
 document.addEventListener("DOMContentLoaded", function(e){
     
-    getUserEmail()
+    getUserEmail();
 
     // realiza la solicitud adecuada para obtener la información del producto
     getJSONData(PRODUCT_INFO_URL_ESP).then(function(resultObj){
         if (resultObj.status === "ok"){
-            currentProductInfoArray = resultObj.data
-            console.log(currentProductInfoArray)
-            showProductInfo()
-            showRelatedProducts()
+            currentProductInfoArray = resultObj.data;
+            showProductInfo();
+            showRelatedProducts();
         }})
 
     // realiza la solicitud adecuada para obtener los comentarios del producto
     getJSONData(PRODUCT_INFO_COMMENTS_URL_ESP).then(function(resultObj){
         if (resultObj.status === "ok"){
-            currentProductComentsArray = resultObj.data
-            console.log(currentProductComentsArray)
-            showProductComents()
+            currentProductComentsArray = resultObj.data;
+            showProductComents();
             }})
 
 // Se establece la función sendCommit al boton del formulario mediante su ID
@@ -136,14 +134,11 @@ function showProductInfo(){
         </div>
         <p class="mb-1">${currentProductInfoArray.soldCount}</p>
 </div>
-</div>
-
-    
-    `
-    document.getElementsByClassName("container")[1].innerHTML = htmlContentToAppend
+</div>`;
+    document.getElementsByClassName("container")[1].innerHTML = htmlContentToAppend;
     
     
-    imageArray = currentProductInfoArray.images
+    imageArray = currentProductInfoArray.images;
     let htmlContentToAppend2 = `
     <div class="carousel-item active col-auto">
     <img src="${currentProductInfoArray.images[0]}" class="d-block w-100" 
@@ -162,19 +157,14 @@ function showProductInfo(){
     `
     }
 
-        document.getElementById("containerImage").innerHTML = htmlContentToAppend2;
-        
-    }
+        document.getElementById("containerImage").innerHTML = htmlContentToAppend2;};
 
 
 // Función que pega todos los comentarios cargados desde el JSON
 // debajo de la descripción y fotos del producto.
 
     function showProductComents(){
-
-         
-
-         let htmlContentToAppend3 = `
+    let htmlContentToAppend3 = `
     <div class="row">
     <div class="col">
         <div class="d-flex w-100 justify-content-between">
@@ -185,19 +175,18 @@ function showProductInfo(){
         
         for(let i = 0; i < currentProductComentsArray.length; i++){
             let coment = currentProductComentsArray[i];
-            let stars = showStars(coment.score)
+            let stars = showStars(coment.score);
             htmlContentToAppend3 += `
             <div>
                 <p><b>${coment.user}</b> - ${coment.dateTime} - ${stars}</p>
                 <p>${coment.description}</p>
                 </div>  
             <hr>`
-
         }
         htmlContentToAppend3 += `
         </div>
         </div>
-        `
+        `;
         
             document.getElementsByClassName("container")[2].innerHTML += htmlContentToAppend3;       
     }
@@ -206,22 +195,35 @@ function showProductInfo(){
     function showRelatedProducts(){
         relatedProductsArray =currentProductInfoArray.relatedProducts
         console.log(relatedProductsArray)
-      let  htmlContentToAppend4 =""
-        for(let i = 0; i < relatedProductsArray.length; i++){
-            let relatedProduct = relatedProductsArray[i];
-    
-        htmlContentToAppend4 += `
-    
-        <div onclick="setProdID(${relatedProduct.id})"  class="card mb-4 shadow-sm cursor-active href="https://" style="width: 18rem;">
-        <img src="${relatedProduct.image}" class="card-img-top" alt="imagen representativa de ${relatedProduct.name} ">
+        let htmlContentToAppend4 = `
+        <div onclick="setProdID(${relatedProductsArray[0].id})" class="cursor-active carousel-item active col-auto">
+        <div class="card">
+        <img class="card-img-top"src="${relatedProductsArray[0].image}" 
+        alt="Imagen representativa del producto ${relatedProductsArray[0].name}">
         <div class="card-body">
-          <p class="card-text">${relatedProduct.name}.</p>
-        </div>
+              <h4 class="card-title">${relatedProductsArray[0].name}</h4>
       </div>
-        `
-        }
+      </div>
+      </div>
+    `;
+    for(let i = 0; i+1 < relatedProductsArray.length; i++){
+        let relatedProduct = relatedProductsArray[i];
+
+    htmlContentToAppend4 += `
+                <div onclick="setProdID(${relatedProductsArray[i+1].id})"  class="cursor-active carousel-item col-auto">
+                <div class="card">
+                <img class="card-img-top"src="${relatedProductsArray[i+1].image}" 
+                 alt="Imagen representativa del producto ${relatedProductsArray[i+1].name}">
+                 <div class="card-body">
+                 <h4 class="card-title">${relatedProductsArray[i+1].name}</h4>
+                 </div>
+             
+           </div>
+           </div>
+    `
+    }
+        console.log(htmlContentToAppend4)
         document.getElementById("relatedProducts").innerHTML = htmlContentToAppend4
 
     }
-    
 
