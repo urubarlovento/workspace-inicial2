@@ -55,7 +55,7 @@ function sendCommit(){
         </div>
         </div>
         `
-        document.getElementsByClassName("container")[3].innerHTML += htmlContentToAppend4;      
+        document.getElementsByClassName("container")[2].innerHTML += htmlContentToAppend4;      
     
 
  }
@@ -199,7 +199,7 @@ function showProductInfo(){
         </div>
         `
         
-            document.getElementsByClassName("container")[3].innerHTML += htmlContentToAppend3;       
+            document.getElementsByClassName("container")[2].innerHTML += htmlContentToAppend3;       
     }
 
 
