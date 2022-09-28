@@ -74,7 +74,8 @@ function showProductsList(){
   let htmlContentToAppend = "";
     for(let i = 0; i < currentProductsArray.length; i++){
         let product = currentProductsArray[i];
-
+        let searched = document.getElementById("inputBuscar").value
+        if (product.description.toLowerCase().includes(searched.toLowerCase()) || product.name.toLowerCase().includes(searched.toLowerCase())){
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
         ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
@@ -97,7 +98,7 @@ function showProductsList(){
             console.log(product)
         
 
-        }
+          }}
         let htmlContentToAppend2 =  `
         <div class="text-center p-4">
         <h2>Productos</h2>
@@ -166,6 +167,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     }
 
     showProductsList();
+});
+  document.addEventListener("keyup", e=>{
+  showProductsList(); 
 });
 
 })

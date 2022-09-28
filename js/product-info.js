@@ -36,15 +36,12 @@ function sendCommit(){
   
     textCommit = document.getElementById("cuerpo").value
      
-    
-       console.log(userEmail)
        console.log(document.getElementById("stars").value)
     starsCommit = showStars(document.getElementById("stars").value)
        console.log(starsCommit)
     hoy = new Date()
     console.log(hoy)
        dateTimeCommit = hoy.toISOString().replace(/T/,' ').replace(/\..+/,'')
-    console.log(dateTimeCommit)
     htmlContentToAppend4 = ` <div class="row">
     <div class="col">
             <div>
