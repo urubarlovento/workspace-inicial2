@@ -1,5 +1,3 @@
-
-
 //muestra una alerta de comprobación correcta
 function showAlertSuccess() {
   document.getElementById("alert-success").classList.add("show");

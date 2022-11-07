@@ -4,12 +4,11 @@ let CART_INFO_URL= `https://japceibal.github.io/emercado-api/user_cart/${userID2
 document.addEventListener("DOMContentLoaded", function(e){
     
     getUserEmail()
-    getJSONData(CART_INFO_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            currentCart = resultObj.data
-            console.log(currentCart)
-            currentCart_2=currentCart.articles
-            console.log(currentCart_2)
+    // descarga el carrito del local storage
+objCart= JSON.parse(localStorage.getItem("oldcart"));
+console.log(objCart)
+currentCart_2= objCart
+
             showCart()
 
             // for(let i = 0; i < currentCart_2.length; i++){
@@ -27,14 +26,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             //     })}
 
             subtotalcalc0()
-
-        }})
-        document.getElementsByClassName("count")
-      
-
-        
-
-
 
 });
 
@@ -90,3 +81,5 @@ function subtotalcalc0(){
     }
 
 }
+
+
