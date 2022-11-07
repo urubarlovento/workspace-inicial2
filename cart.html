@@ -37,10 +37,78 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div>
+        <br><br>
+        <h3 class="text-center">Carrito de Compras</h3>
       </div>
+     <div> 
+      <br>
+      <h5 class="">Artículos a comprar</h5>
+     </div>
     </div>
+    <div class="container">
+      
+      <table class="table">
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>Costo</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th> 
+        </tr>
+        <tr id="cartTable">  
+        </tr>
+      </table>
+      <br>
+
+      <h5 class="cart_title_2">Tipo de envío</h5>
+      <div>
+        <input type="radio" id="huey" name="drone" value="huey"
+               checked>
+        <label for="huey">Premium 2 a 5 días (15%)</label>
+      </div>
+  
+      <div>
+        <input type="radio" id="dewey" name="drone" value="dewey">
+        <label for="dewey">Express 5 a 6 días (17%)</label>
+      </div>
+  
+      <div>
+        <input type="radio" id="louie" name="drone" value="louie">
+        <label for="louie">Standard 12 a 15 días (5%)</label>
+      </div>
+      <br>
+
+      <h5 class="cart_title_2">Dirección de envío</h5>
+     
+      <table>
+
+      <tr>
+      <th><label>Calle</label></th>
+      <th><label>Número</label></th>
+      </tr>
+
+      <tr>
+        <td><input maxlength="10"></td>
+        <td><input maxlength="10"></td>
+      </tr>
+
+
+      <tr>
+        <td><label><strong>Esquina</strong></label></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><input maxlength="10"></td>
+        <td></td>
+      </tr>
+
+
+      </table>
+
+    </div>
+ 
   </main>
   <footer class="text-muted">
     <div class="container">

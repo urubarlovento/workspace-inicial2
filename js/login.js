@@ -1,4 +1,5 @@
 
+
 //muestra una alerta de comprobación correcta
 function showAlertSuccess() {
   document.getElementById("alert-success").classList.add("show");
@@ -56,6 +57,7 @@ function setUserEmail(){
   var userEmail = document.getElementById("email").value
   console.log(userEmail)
   localStorage.setItem("userEmailStorage", userEmail);
+
       }
  
 
@@ -66,4 +68,6 @@ regBtn.addEventListener("click", () => {
   general_Valid () 
   
 })
+
+
 
