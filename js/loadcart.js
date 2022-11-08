@@ -24,7 +24,7 @@ let getJSONData1 = function(url){
 }
 
 function setcart(){
-    localStorage.setItem("userEmailStorage", userEmail);
+    localStorage.setItem("oldcart", currentCart_2);
   
         }
 
@@ -33,10 +33,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData1(CART_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentCart = resultObj.data
-            console.log(currentCart)
             currentCart_2=JSON.stringify(currentCart.articles)
-            console.log(currentCart_2)
-            localStorage.setItem("oldcart", currentCart_2);
         }})
         
     })

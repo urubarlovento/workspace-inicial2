@@ -43,6 +43,7 @@ showAlertError();
 }
 // Re dirige a la página index
 function loginSuccess (){
+  setcart()
 location.href = "index.html";
 }
 
@@ -53,7 +54,6 @@ location.href = "login.html";
 // Guarda el email en el Local Storage
 function setUserEmail(){
   var userEmail = document.getElementById("email").value
-  console.log(userEmail)
   localStorage.setItem("userEmailStorage", userEmail);
 
       }

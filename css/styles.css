@@ -237,3 +237,10 @@ a.custom-card:hover {
   margin:0px auto ;
   text-align: center;
 } */
+
+.tablecart {
+  width: 20%;
+}
+.tablecartH {
+  width: 100%;
+}

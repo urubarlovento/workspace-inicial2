@@ -54,7 +54,7 @@ function sendCommit(){
         </div>
         </div>
         `
-        document.getElementsByClassName("container")[2].innerHTML += htmlContentToAppend4;      
+        document.getElementsByClassName("container")[3].innerHTML += htmlContentToAppend4;      
     
 
  }
@@ -68,10 +68,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL_ESP).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductInfoArray = resultObj.data;
-            console.log(currentProductInfoArray)
             showProductInfo();
             showRelatedProducts();
-            buyerProduct()
+        
         }})
 
     // realiza la solicitud adecuada para obtener los comentarios del producto
@@ -86,7 +85,11 @@ document.addEventListener("DOMContentLoaded", function(e){
                 sendCommit ();
             });        
 
-
+            byRegBtn.addEventListener("click", () => {
+  
+                buyerProduct () 
+                
+              })
 });
 
 // Funcion que toma los datos de compra de un producto
@@ -96,10 +99,8 @@ function buyerProduct(){
 rCart = JSON.parse(localStorage.getItem("oldcart"));
 console.log(rCart)
 rCart.push({id:`${currentProductInfoArray.id}`, name: `${currentProductInfoArray.name}`, count: 1, unitCost: `${currentProductInfoArray.cost}`, currency: `${currentProductInfoArray.currency}`, image:`${currentProductInfoArray.images[0]}` });
-console.log(rCart)
 
 rCartStr=JSON.stringify(rCart)
-console.log(rCartStr)
 
 localStorage.setItem("oldcart", rCartStr);
 }
@@ -151,7 +152,7 @@ function showProductInfo(){
         <p class="mb-1">${currentProductInfoArray.soldCount}</p>
 </div>
 </div>`;
-    document.getElementsByClassName("container")[1].innerHTML = htmlContentToAppend;
+    document.getElementsByClassName("container")[2].innerHTML = htmlContentToAppend;
     
     
     imageArray = currentProductInfoArray.images;
@@ -204,7 +205,7 @@ function showProductInfo(){
         </div>
         `;
         
-            document.getElementsByClassName("container")[2].innerHTML += htmlContentToAppend3;       
+            document.getElementsByClassName("container")[3].innerHTML += htmlContentToAppend3;       
     }
 
 
