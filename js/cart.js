@@ -53,11 +53,14 @@ function showCart(){
         let cart=currentCart_2[i];
 
     htmlContenttoAppend +=`
+    
     <td style="heigth:20px"><img src="${cart.image}"  width="90px" class="img-thumbnail th1"></td>
     <td  class="">${cart.name}</td>
     <td  class="unitCost">USD${" "}<span id="unitCost${i}">${cart.unitCost}</span></td>
     <td class="count"><input oninput="subtotalcalc(${i})"  min="0" max="1000" id="count${i}" maxlength="15" value =${cart.count} ="width : 30px; heigth : 10px"></td>
     <td class="subtotals"><div id="subtotals${i}"></div></td>
+    </tr>
+    <tr>
     `
 }
 document.getElementById("cartTable").innerHTML=htmlContenttoAppend

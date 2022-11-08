@@ -5,6 +5,8 @@ let PRODUCT_INFO_URL_ESP = `https://japceibal.github.io/emercado-api/products/${
 // const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
 let PRODUCT_INFO_COMMENTS_URL_ESP = `https://japceibal.github.io/emercado-api/products_comments/${productNumber}.json`;
 
+let buyProduct = {}
+
 function setProdID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
@@ -66,8 +68,10 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL_ESP).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductInfoArray = resultObj.data;
+            console.log(currentProductInfoArray)
             showProductInfo();
             showRelatedProducts();
+            buyerProduct()
         }})
 
     // realiza la solicitud adecuada para obtener los comentarios del producto
@@ -84,6 +88,21 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 
 });
+
+// Funcion que toma los datos de compra de un producto
+
+function buyerProduct(){
+
+rCart = JSON.parse(localStorage.getItem("oldcart"));
+console.log(rCart)
+rCart.push({id:`${currentProductInfoArray.id}`, name: `${currentProductInfoArray.name}`, count: 1, unitCost: `${currentProductInfoArray.cost}`, currency: `${currentProductInfoArray.currency}`, image:`${currentProductInfoArray.images[0]}` });
+console.log(rCart)
+
+rCartStr=JSON.stringify(rCart)
+console.log(rCartStr)
+
+localStorage.setItem("oldcart", rCartStr);
+}
 
 // Función que pega la información del producto descargada en el HTML
 function showProductInfo(){
