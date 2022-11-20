@@ -60,8 +60,8 @@ function showCart(){
     <td class="tablecart unitCost">USD${" "}<span id="unitCost${i}">${price}</span></td>
     <td class="tablecart count"><input oninput="subtotalcalc(${i})"  class="quantity" min="0" max="1000" id="count${i}" maxlength="15" value =${cart.count} ="width : 30px; heigth : 10px"><div class="invalid-feedback">Debe seleccionar una cantidad correcta!</div></td>
     <td class="tablecart subtotals"><div>USD${" "}<span class=subtotalN id="subtotals${i}"></span></div></td>
-    <td><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></button></td>
-
+    <td><button onclick="supElem(${i}, currentCart_2)"class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></button></td>
+    
     </tr>
     
     `
@@ -368,10 +368,15 @@ function payShowAlerts() {
 }
 // Esta funcion comprueba si hay alguno error antes de mandar el formulario
 function finalVer(){
+    let succbuy = `  
+    <div class="alert alert-success" role="alert">
+    <p>Has comprado con éxito.</p>
+    </div>`
  totMiss = document.getElementsByClassName("is-invalid")  
  console.log(totMiss.length)
  if(totMiss.length ==0){
     console.log('bien hecho')
+    document.getElementById("payMetAlert").innerHTML = succbuy
  }else{console.log('mal hecho')}
 }
 
@@ -384,3 +389,17 @@ function totalVal () {
     payShowAlerts()
     finalVer()
 }
+// Esta funcion elimina un elemento en un arreglo llamado e una determinada posicion
+function supElem (i, pArray) {
+    console.log(currentCart_2)
+    pArray.splice(i,1);
+    console.log(currentCart_2)
+    setcart()
+    location.href = "cart.html";
+
+}
+// Esta sube nuevamente el carro
+function setcart(){
+    currentCart_3=JSON.stringify(currentCart_2)
+    localStorage.setItem("oldcart", currentCart_3);
+        }
