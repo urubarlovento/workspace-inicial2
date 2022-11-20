@@ -11,6 +11,7 @@ currentCart_2= objCart
             shippingValue()
             submitBuy.addEventListener("click", () => {totalVal ()});
             dualForm ()
+            cerrar.addEventListener("click", () => {payShowAlerts()});
 
 });
 
@@ -154,6 +155,9 @@ let corner =document.getElementById("corner")
 
 // dentro del modal
 
+//abrir el modal
+let paySelect = document.getElementById("paySelect")
+
 // Tarjeta de credito
 // let tarjeta_radio = document.getElementById("tarjeta_radio")
 let creditCard = document.getElementById("creditCard")
@@ -170,7 +174,7 @@ let bankTrans = document.getElementById("bankTrans")
 // let nrocuenta = document.getElementById("nrocuenta")
 let accountNumber = document.getElementById("accountNumber")
 // let cerrar =document.getElementById("Cerrar")
-let cerrar =document.getElementById("Cerrar")
+let cerrar =document.getElementById("cerrar")
 
 //Boton de comprar
 let submitBuy =document.getElementById("submit_buy")
@@ -259,7 +263,7 @@ function dualForm () {
         segCod.removeAttribute("disabled");
         expDate.removeAttribute("disabled");
         accountNumber.setAttribute("disabled", "");
-        document.getElementById("paySelect").innerHTML= "Tarjeta de Crédito";
+        paySelect.innerHTML= "Tarjeta de Crédito";
         cleanPayM ()
         }});
 
@@ -269,7 +273,7 @@ function dualForm () {
         segCod.setAttribute("disabled", "");
         expDate.setAttribute("disabled", "");
         accountNumber.removeAttribute("disabled");
-        document.getElementById("paySelect").innerHTML= "Transferencia Bancaria";
+        paySelect.innerHTML= "Transferencia Bancaria";
         cleanPayM ()
         }});
         
@@ -287,22 +291,21 @@ function cleanPayM () {
     if(bankTrans.checked == true){
         cardNumber.classList.remove("is-invalid")
         cardNumber.classList.remove("is-valid")
-
         cardNumber.value = "";
+
         segCod.classList.remove("is-invalid")
         segCod.classList.remove("is-valid")
-
         segCod.value = "";
+        
         expDate.classList.remove("is-invalid")
         expDate.classList.remove("is-valid")
-
         expDate.value = "";
     }  
 
 }
 
 
-// Esta funcion verifica los campos de tarjeta o vuenta
+// Esta funcion verifica los campos de tarjeta o cuenta
 function payIntVal () {
 
     if(creditCard.checked == true){
@@ -333,11 +336,51 @@ function payIntVal () {
 
 }
 
+//Esta funcion muestra una alerta si no se llena todo el modo de pago
+function payShowAlerts() {
+    let errorMet =`  
+    <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Error</h4>
+    <p>Debe llenar los campos del formulario de pago obligatorios para la forma de pago seleccionada.</p>
+    <hr>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>`
+    let succMet = `  
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Felicitaciones</h4>
+    <p>Campos de formulario de pago completados con éxito.</p>
+    <hr>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>`
+    if (creditCard.checked == false && bankTrans.checked == false) {
+        paySelect.classList.add("is-invalid")
+        document.getElementById("payMetAlert").innerHTML = errorMet
+    } else if (creditCard.checked == true && (cardNumber.value.length ==0 || segCod.value.length ==0 || expDate.value.length == 0)) {
+        document.getElementById("payMetAlert").innerHTML = errorMet
+    }else {
+        paySelect.classList.remove("is-invalid")
+        if (bankTrans.checked == true && (accountNumber.value.length ==0)){
+        document.getElementById("payMetAlert").innerHTML = errorMet
+
+    }else {
+        document.getElementById("payMetAlert").innerHTML = succMet
+    }}
+}
+// Esta funcion comprueba si hay alguno error antes de mandar el formulario
+function finalVer(){
+ totMiss = document.getElementsByClassName("is-invalid")  
+ console.log(totMiss.length)
+ if(totMiss.length ==0){
+    console.log('bien hecho')
+ }else{console.log('mal hecho')}
+}
+
 // Esta funcion controla que controla todo al comprar
 function totalVal () {
     checkDeliv()
     checkQuantity()
     checkDirection()
     payIntVal ()
-
+    payShowAlerts()
+    finalVer()
 }
