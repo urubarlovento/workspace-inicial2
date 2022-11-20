@@ -10,6 +10,7 @@ currentCart_2= objCart
             subtotalcalc0()
             shippingValue()
             submitBuy.addEventListener("click", () => {totalVal ()});
+            dualForm ()
 
 });
 
@@ -198,7 +199,7 @@ function checkEmptyMayq(input){
 
         }else{
         input.classList.add("is-invalid")
-         input.classList.remove("is-valid")
+        input.classList.remove("is-valid")
         }
         }
 
@@ -253,28 +254,90 @@ function checkDirection(){
 
 function dualForm () {
     creditCard.addEventListener("input",function(){
-        if(tarjeta_radio.checked == true){
+        if(creditCard.checked == true){
         cardNumber.removeAttribute("disabled");
         segCod.removeAttribute("disabled");
         expDate.removeAttribute("disabled");
-        accountNumber.setAttribute("disabled");
+        accountNumber.setAttribute("disabled", "");
         document.getElementById("paySelect").innerHTML= "Tarjeta de Crédito";
+        cleanPayM ()
         }});
-     creditCard.addEventListener("input",function(){
-         if(tarjeta_radio.checked == true){
-         cardNumber.setAttribute("disabled");
-        segCod.setAttribute("disabled");
-        expDate.setAttribute("disabled");
+
+     bankTrans.addEventListener("input",function(){
+         if(bankTrans.checked == true){
+        cardNumber.setAttribute("disabled", "");
+        segCod.setAttribute("disabled", "");
+        expDate.setAttribute("disabled", "");
         accountNumber.removeAttribute("disabled");
         document.getElementById("paySelect").innerHTML= "Transferencia Bancaria";
+        cleanPayM ()
         }});
         
 
 }
+//Esta funcion limpia los campos al cambiar de modo de pago
+function cleanPayM () {
+    if(creditCard.checked == true){
+        accountNumber.classList.remove("is-invalid")
+        accountNumber.classList.remove("is-valid")
+
+        accountNumber.value = "";
+
+    }  
+    if(bankTrans.checked == true){
+        cardNumber.classList.remove("is-invalid")
+        cardNumber.classList.remove("is-valid")
+
+        cardNumber.value = "";
+        segCod.classList.remove("is-invalid")
+        segCod.classList.remove("is-valid")
+
+        segCod.value = "";
+        expDate.classList.remove("is-invalid")
+        expDate.classList.remove("is-valid")
+
+        expDate.value = "";
+    }  
+
+}
+
+
+// Esta funcion verifica los campos de tarjeta o vuenta
+function payIntVal () {
+
+    if(creditCard.checked == true){
+        checkEmptyInput(cardNumber)
+        checkEmptyInput(segCod)
+        checkEmptyInput(expDate)
+        accountNumber.classList.remove("is-invalid")
+        accountNumber.classList.remove("is-valid")
+
+        accountNumber.value = "";
+
+    }  
+    if(bankTrans.checked == true){
+        checkEmptyInput(accountNumber)
+        cardNumber.classList.remove("is-invalid")
+        cardNumber.classList.remove("is-valid")
+
+        cardNumber.value = "";
+        segCod.classList.remove("is-valid")
+        segCod.classList.remove("is-valid")
+
+        segCod.value = "";
+        expDate.classList.remove("is-valid")
+        expDate.classList.remove("is-invalid")
+
+        expDate.value = "";
+    }  
+
+}
+
 // Esta funcion controla que controla todo al comprar
 function totalVal () {
     checkDeliv()
     checkQuantity()
     checkDirection()
+    payIntVal ()
 
 }
