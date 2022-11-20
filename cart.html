@@ -9,6 +9,9 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -55,6 +58,7 @@
           <th class="tablecart">Costo</th>
           <th class="tablecart">Cantidad</th>
           <th class="tablecart">Subtotal</th> 
+          <th></th>
         </tr>
       </table>
 
@@ -62,21 +66,21 @@
       </table>
       <br>
 
-      <h5 class="cart_title_2">Tipo de envío</h5>
+      <h5 class="cart_title_2" id="deliveryType">Tipo de envío</h5>
+      <div id="invalidCheckFeedback" class="invalid-feedback">Debe seleccionar un tipo de envío</div>
       <div>
-        <input type="radio" id="huey" name="drone" value="huey"
-               checked>
-        <label for="huey">Premium 2 a 5 días (15%)</label>
+        <input type="radio" id="premium" name="shipping" value=15 onclick="shippingValue()">
+        <label for="premium"><span id="spPremium">Premium 2 a 5 días (15%)</span></label>
+      </div>
+
+      <div>
+        <input type="radio" id="express" name="shipping" value=17 onclick="shippingValue()">
+        <label for="express"><span id="spExpress">Express 5 a 6 días (17%)</span></label>
       </div>
   
       <div>
-        <input type="radio" id="dewey" name="drone" value="dewey">
-        <label for="dewey">Express 5 a 6 días (17%)</label>
-      </div>
-  
-      <div>
-        <input type="radio" id="louie" name="drone" value="louie">
-        <label for="louie">Standard 12 a 15 días (5%)</label>
+        <input type="radio" id="standard" name="shipping" value=5 onclick="shippingValue()">
+        <label for="standard"><span id="spStandard">Standard 12 a 15 días (5%)</span></label>
       </div>
       <br>
 
@@ -90,8 +94,12 @@
       </tr>
 
       <tr>
-        <td><input></td>
-        <td><input></td>
+        <td><input maxlength="20" style="margin-right: 10px" id="street" class="form-control">
+        <div class="invalid-feedback">Por favor, ingrese su Calle</div>
+        </td>
+        <td><input maxlength="10" id="number"class="form-control"><div class="invalid-feedback">
+          Por favor, ingrese su Número
+        </div></td>
       </tr>
 
 
@@ -100,16 +108,140 @@
       </tr>
 
       <tr>
-        <td><input></td>
-        
+        <td><input maxlength="10" id="corner" class="form-control"><div class="invalid-feedback">
+          Por favor, ingrese su Esquina
+        </div></td>
+        <td></td>
       </tr>
 
 
       </table>
 
-    </div>
+    </table>
+      
+    <br>
+    <div class="container">
+     <table class="table">
+       <thead>
  
+       </thead>
+       <tbody>
+         <tr>
+           <td>Subtotal
+             <br>
+             Costo unitario del poducto por cantidad</td>
+           <td >USD<span id="subT"></span></td> 
+         </tr>        <tr>
+           <td>Costo de envio
+             <br>
+           Segun el costo de envio. </td>
+           <td id="shippingCost">First</td>
+         </tr>
+       </tbody>
+       <tfoot>
+         <tr>
+           <td>Total USD</td>
+           <td id="totalTotal">Otto</td>
+         </tr>
+       </tfoot>
+     </table>
+   </div>
+  
+    <div class="container">
+
+      <div id="paySelect">
+      <label>No ha seleccionado</label>
+      </div>
+      <button type="button" class="btn btn-link ps-0" data-toggle="modal" data-target="#modalMP" id="select">Seleccionar</button>
+      <div id="invalidCheckFeedback" class="invalid-feedback">
+        Debe seleccionar una forma de pago 
+      </div>
+      <div id="validCheckFeedback" class="valid-feedback">
+        Forma de pago seleccionada correctamente ✓
+      </div>
+  
+      <div id="container_alerts">
+  
+      <div id="deliver_exito"></div>
+  
+      <div id="confirm_pay"></div>
+      
+      <div id="validate"></div>
+  
+      </div>
+      <div class="form-group" style="width: 100%;">
+        <button type="submit" class="btn btn-primary btn-block" id="submit_buy">
+          Finalizar Compra</button>       
+       </div> 
+
+  <div class="container">
+        <!-- Modal -->
+    <div class="modal" tabindex="-1" id="modalMP">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            Forma de pago
+          </div>
+          <div class="modal-body">
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="creditCard" name="optradio" value="option1">Tarjeta de Credito
+              <label class="form-check-label" for="radio1"></label>
+              <hr>
+              <form class="row g-3 needs-validation" novalidate>
+                <div class="col-md-4">
+                  <label for="validationCustom01" class="form-label">Numero de tarjeta</label>
+                  <input type="number" class="form-control" id="cardNumber" required disabled>
+                  <div class="invalid-feedback">
+                    Introdusca un numero de tarjeta correcto.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationCustom02" class="form-label">Código de seg.</label>
+                  <input type="number" class="form-control" id="segCod" required didisabledsabled>
+                  <div class="invalid-feedback">
+                    Introdusca un código de seguridad correcto.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom03" class="form-label">Vencimiento (MM/AA)</label>
+                  <input type="text" class="form-control" id="expDate" required disabled>
+                  <div class="invalid-feedback">
+                    Introdusca una fecha correcta.
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="bankTrans" name="optradio" value="option2">Transferencia banacaria
+              <label class="form-check-label" for="radio2"></label>
+              <hr>
+              <form class="row g-3 needs-validation" novalidate>
+
+                <div class="col-md-6">
+                  <label for="validationCustom03" class="form-label">Número de cuenta</label>
+                  <input type="text" class="form-control" id="accountNumber" required disabled>
+                  <div class="invalid-feedback">
+                    Introdusca un numero de cuenta correcto.
+                  </div>
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+           <button class="btn btn-primary w3-right" type="button" id="cerrar" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   </main>
+
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

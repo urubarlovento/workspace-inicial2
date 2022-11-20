@@ -43,7 +43,8 @@ showAlertError();
 }
 // Re dirige a la página index
 function loginSuccess (){
-  setcart()
+ 
+  setcart()//carga el carrito si el login es exitoso
 location.href = "index.html";
 }
 
