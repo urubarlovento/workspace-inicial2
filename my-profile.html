@@ -51,10 +51,81 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container" id="containerP">
+      <br>
+      <br>
+      <div>
+      <h3>Perfil</h3>
+        <!-- Se agrega una foto de nadie y se alinea con boostrap -->
+
+      <div class="col-lg-12">
+        <img class="rounded float-end" src="img/nadie.jpg" alt="Foto de Perfil" class="img-thumbnail" width="100px" id="photoP">
       </div>
+      </div>
+      <br>
+      <br>
+              <!-- Se agrega una foformulario con autentificaci[on de boostrap] -->
+
+      <form class="row g-2 needs-validation" novalidate>
+        <div class="col-md-5">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nameP" required>
+          <div class="invalid-feedback">
+            Proporciona un nombre válido.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="name2" class="form-label">Segundo Nombre</label>
+          <input type="text" class="form-control" id="name2">
+
+        </div>
+ 
+        <div class="col-md-5">
+          <label for="surname" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="surname"  required>
+          <div class="invalid-feedback">
+            Proporciona un apellido válido.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="surname2" class="form-label">Segundo Apellido</label>
+          <input type="text" class="form-control" id="surname2">
+          <div class="invalid-feedback">
+            Proporciona una ciudad válida.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control rep" id="email" required>
+          <div class="invalid-feedback">
+            Proporciona un e-mail valido.
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <label for="pictNew" class="form-label">Imagen de Perfil</label>
+          <input type="file" class="form" id="pictNew">
+        </div>
+
+        <div class="col-md-5">
+          <label for="phone" class="form-label">Teléfono de contacto</label>
+          <input type="text" class="form-control" id="phone" >
+          <div class="invalid-feedback">
+            Proporciona un telefono válido.
+          </div>
+        </div>
+        <hr>
+
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit" id="saveP">Enviar formulario</button>
+        </div>
+      </form>
+
+      
+      
+
+
+
     </div>
   </main>
   <footer class="text-muted">

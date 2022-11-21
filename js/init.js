@@ -6,6 +6,9 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/prod
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 let userEmail = ''
+let userPStr = ''
+let userP = ''
+
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -43,10 +46,10 @@ let getJSONData = function(url){
 //Pega un campo en la barra de navegación con el email y a su vez es un link al perfil de usuario
 function getUserEmail(){
 
-  userEmail= localStorage.getItem("userEmailStorage");
-  // console.log(userEmail)
-  if (userEmail != null){
-  
+  userPStr= localStorage.getItem("userP");
+  console.log(userEmail)
+  if (userPStr != null){
+    userEmail= JSON.parse(localStorage.getItem("userP")).email;
       let htmlContentToAppend = `
       <div class="dropdown">
       <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,4 +73,15 @@ function getUserEmail(){
 
       }
 
+      //Esta funcion carga el usuario y lo convierte en un objeto
+function loadUser(){
+  userPStr= localStorage.getItem("userP");
+  userP= JSON.parse(userPStr)
 
+}
+//Esta funcion actualiza el usuario en el LocalStarage
+function actUser(){
+  userPStr=JSON.stringify(userP)
+  localStorage.setItem("userP", userPStr);
+
+}

@@ -29,6 +29,7 @@ return true
 
 function general_Valid () {
 if(emptyfield()){
+createUserP()
 setUserEmail()
 setTimeout (loginSuccess,1000);
 showAlertSuccess();
@@ -56,6 +57,11 @@ location.href = "login.html";
 function setUserEmail(){
   var userEmail = document.getElementById("email").value
   localStorage.setItem("userEmailStorage", userEmail);
+  userP = JSON.parse(localStorage.getItem("userP"));
+  userP.email = `${userEmail}`
+  userPStr=JSON.stringify(userP)
+  localStorage.setItem("userP", userPStr);
+  
 
       }
  
@@ -68,5 +74,20 @@ regBtn.addEventListener("click", () => {
   
 })
 
-
+ // Funcion que crea un usuario
+  function createUserP(){
+    
+    let userP={
+    userID:'', 
+    nameP:'', 
+    name2:'', 
+    surname:'', 
+    surname2:'', 
+    email:'', 
+    phone: ``,
+    catID: 105, 
+    imageSc:'img/nadie.jpg,'
+    };
+    userPStr=JSON.stringify(userP)
+    localStorage.setItem("userP", userPStr);}
 
