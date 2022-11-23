@@ -183,18 +183,6 @@ let submitBuy =document.getElementById("submit_buy")
 let quantities = document.getElementsByClassName("quantity")
 
 
-
-// Esta funcion valida un input si el mismo tiene contenido
-function checkEmptyInput(input){
-    if(input.value.length == 0){
-        input.classList.add("is-invalid")
-        input.classList.remove("is-valid")
-        }else{
-        input.classList.add("is-valid")
-        input.classList.remove("is-invalid")
-        }
-        }
-
 // Estafuncion valida un input si el mismo tiene contenido y si es mayor a 0
 function checkEmptyMayq(input){
     if(input.value.length !== 0 && input.value > 0){

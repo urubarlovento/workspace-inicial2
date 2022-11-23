@@ -44,7 +44,12 @@ showAlertError();
 }
 // Re dirige a la página index
 function loginSuccess (){
- 
+  getJSONData1(CART_INFO_URL).then(function(resultObj){
+    if (resultObj.status === "ok"){
+        currentCart = resultObj.data
+        currentCart_2=JSON.stringify(currentCart.articles)
+    }})
+    
   setcart()//carga el carrito si el login es exitoso
 location.href = "index.html";
 }
@@ -55,11 +60,13 @@ location.href = "login.html";
 }
 // Guarda el email en el Local Storage
 function setUserEmail(){
-  var userEmail = document.getElementById("email").value
-  localStorage.setItem("userEmailStorage", userEmail);
   userP = JSON.parse(localStorage.getItem("userP"));
+  console.log(userP)
+  userEmail = document.getElementById('email').value;
   userP.email = `${userEmail}`
   userPStr=JSON.stringify(userP)
+  console.log(userP)
+
   localStorage.setItem("userP", userPStr);
   
 

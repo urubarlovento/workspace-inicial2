@@ -47,9 +47,10 @@ let getJSONData = function(url){
 function getUserEmail(){
 
   userPStr= localStorage.getItem("userP");
-  console.log(userEmail)
+  console.log(userPStr)
   if (userPStr != null){
-    userEmail= JSON.parse(localStorage.getItem("userP")).email;
+    userEmail= JSON.parse(userPStr).email;
+    console.log(userEmail)
       let htmlContentToAppend = `
       <div class="dropdown">
       <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,6 +72,16 @@ function getUserEmail(){
       location.href = "login.html";
   }
 
+      }
+// Esta funcion valida un input si el mismo tiene contenido
+function checkEmptyInput(input){
+  if(input.value.length == 0){
+      input.classList.add("is-invalid")
+      input.classList.remove("is-valid")
+      }else{
+      input.classList.add("is-valid")
+      input.classList.remove("is-invalid")
+      }
       }
 
       //Esta funcion carga el usuario y lo convierte en un objeto

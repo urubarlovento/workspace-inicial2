@@ -5,6 +5,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 function getoutUserEmail(){
 
-    localStorage.removeItem("userEmailStorage");
+    localStorage.removeItem("userP");
     getUserEmail()
     }

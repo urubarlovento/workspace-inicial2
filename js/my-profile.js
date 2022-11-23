@@ -4,11 +4,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     runpictureChange ()
     loadUser()
     loadForm()
-    saveP.addEventListener("click", function(){finalVer();})
+    saveP.addEventListener("click", function(){checkMandatoryCamps();})
 });
 
-// esta funcion es de boostrap y autentifica los formularios
-(function(){'use strict';var forms = document.querySelectorAll('.needs-validation');Array.prototype.slice.call(forms).forEach(function(form){form.addEventListener('submit',function(event){if(!form.checkValidity()){event.preventDefault(); event.stopPropagation()}form.classList.add('was-validated')}, false)})})()
 //variables a utilizar
 let pictureP = document.getElementById('photoP')
 let pictNew = document.getElementById('pictNew')
@@ -68,6 +66,20 @@ function pictureChange () {
     userP.phone = phone.value;
     actUser()
   }
+// Esta funcion verifica los campos obligatorios
+function checkMandatoryCamps(){
+    checkEmptyInput(email);
+    email.addEventListener("input", function(e){checkEmptyInput(email)});
+
+    checkEmptyInput(nameP);
+    nameP.addEventListener("input", function(e){checkEmptyInput(nameP)});
+
+    checkEmptyInput(surname);
+    surname.addEventListener("input", function(e){checkEmptyInput(surname)});
+
+    finalVer()
+}
+
 // Esta funcion comprueba si hay alguno error antes de mandar el formulario
 function finalVer(){
     // let succbuy = `  
