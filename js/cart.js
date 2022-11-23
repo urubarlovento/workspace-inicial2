@@ -99,7 +99,7 @@ function subtotalcalct(){
     document.getElementById("subT").innerHTML=htmlContenttoAppendsubtotalt 
 }
 
-// Esta funcion calcula el evio segun lo seleccionado
+// Esta funcion calcula el envio segun lo seleccionado
 function shippingValue(){
 
 
@@ -201,7 +201,7 @@ function checkDeliv() {
     standard.addEventListener("input", function(e){checkDeliv()});
 }
 
-// Esta funcion recorre todas las cantidades les asigna la funcion de verificar al estar cambiar de valor
+// Esta funcion recorre todas las cantidades les asigna la funcion de verificar al esta cambiar de valor
 function checkQuantity(){
 
  
@@ -351,8 +351,9 @@ function finalVer(){
     <p>Has comprado con éxito.</p>
     </div>`
  totMiss = document.getElementsByClassName("is-invalid")  
- 
+ if(totMiss.length ==0){
     document.getElementById("payMetAlert").innerHTML = succbuy
+ }
 }
 
 // Esta funcion controla todo al comprar
