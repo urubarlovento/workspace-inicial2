@@ -56,7 +56,7 @@ location.href = "login.html";
 // Guarda el email en el Local Storage
 function setUserEmail(){
   userP = JSON.parse(localStorage.getItem("userP"));
-  userEmail = document.getElementById('email').value;
+  let userEmail = document.getElementById('email').value;
   userP.email = `${userEmail}`
   userPStr=JSON.stringify(userP)
 
@@ -86,7 +86,7 @@ regBtn.addEventListener("click", () => {
     email:'', 
     phone: ``,
     catID: 105, 
-    imageSc:'img/nadie.jpg,'
+    src:'img/nadie.jpg'
     };
     userPStr=JSON.stringify(userP)
     localStorage.setItem("userP", userPStr);}

@@ -47,10 +47,8 @@ let getJSONData = function(url){
 function getUserEmail(){
 
   userPStr= localStorage.getItem("userP");
-  console.log(userPStr)
   if (userPStr != null){
     userEmail= JSON.parse(userPStr).email;
-    console.log(userEmail)
       let htmlContentToAppend = `
       <div class="dropdown">
       <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,9 +62,7 @@ function getUserEmail(){
       </ul>
     </div>
       `
-      // console.log(htmlContentToAppend)
       document.getElementsByClassName("nav-item")[3].innerHTML = htmlContentToAppend
-      // console.log(document.getElementsByClassName("nav-item")[3])
   }
   else{
       location.href = "login.html";
