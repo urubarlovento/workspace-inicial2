@@ -88,10 +88,23 @@ document.addEventListener("DOMContentLoaded", function(e){
             byRegBtn.addEventListener("click", () => {
   
                 buyerProduct () 
-                
+                console.log('pepe')
+                buyedAlert()
+                console.log('pepa')
               })
 });
 
+// Esta funcion muestra un carte de que se realizo la compra del producto 
+function buyedAlert(){
+    let succMet = `  
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Felicitaciones</h4>
+    <p>Su producto ha sido agregado al carrito de compras.</p>
+    <hr>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>` 
+    document.getElementById("buySuccAlert").innerHTML = succMet
+}
 // Funcion que toma los datos de compra de un producto
 
 function buyerProduct(){

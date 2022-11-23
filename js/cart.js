@@ -351,12 +351,11 @@ function finalVer(){
     <p>Has comprado con éxito.</p>
     </div>`
  totMiss = document.getElementsByClassName("is-invalid")  
- if(totMiss.length ==0){
+ 
     document.getElementById("payMetAlert").innerHTML = succbuy
- }
 }
 
-// Esta funcion controla que controla todo al comprar
+// Esta funcion controla todo al comprar
 function totalVal () {
     checkDeliv()
     checkQuantity()
