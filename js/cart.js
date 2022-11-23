@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     getUserEmail()
     // descarga el carrito del local storage
 objCart= JSON.parse(localStorage.getItem("oldcart"));
-// console.log(objCart)
 currentCart_2= objCart
 
             showCart()
@@ -18,13 +17,9 @@ currentCart_2= objCart
 // Esta funcion calcula el valor de los subtotales al cambiar los valores
 function subtotalcalc(i){
     unitCost =parseInt(document.getElementById(`unitCost${i}`).textContent)
-    // console.log(unitCost)
     countt = document.getElementById(`count${i}`).value
-    // console.log(countt)
     let subVar = unitCost*countt 
-    // console.log(subVar)
     let subVarText = `${subVar}`
-    // console.log(subVarText)
     document.getElementById(`subtotals${i}`).innerHTML = subVarText
 
     subtotalcalct()
@@ -32,7 +27,7 @@ function subtotalcalc(i){
 }
 
 
-
+//Esta funcion muestra el carrito del local storage
 function showCart(){
 
     htmlContenttoAppendsubtotalt = ""
@@ -43,15 +38,12 @@ function showCart(){
     for(let i = 0; i < currentCart_2.length; i++){
     
         let cart=currentCart_2[i];
-        // console.log(cart)
         if (cart.currency == 'USD'){
             price = Math.round(cart.unitCost)}
             else{
             price = Math.round(cart.unitCost/45)
             }
-            // console.log(price)
             priceAdder += price;
-            console.log(priceAdder)
     
     htmlContenttoAppend +=`
     <tr>
@@ -80,13 +72,9 @@ function subtotalcalc0(){
 
     let cart=currentCart_2[i];
     unitCost =parseInt(document.getElementById(`unitCost${i}`).textContent)
-    // console.log(unitCost)
     countt = document.getElementById(`count${i}`).value
-    // console.log(countt)
     let subVar = unitCost*countt 
-    // console.log(subVar)
     let subVarText = `${subVar}`
-    // console.log(subVarText)
     document.getElementById(`subtotals${i}`).innerHTML = subVarText
     }
 
@@ -103,9 +91,7 @@ function subtotalcalct(){
 
     let subtotalm=Number(document.getElementById(`subtotals${i}`).textContent);
     subtotalm=(subtotalm)
-    console.log(subtotalm)
     priceAdder += subtotalm;
-    console.log(priceAdder)
     }
     htmlContenttoAppendsubtotalt =`
     <span id="subtotalcant" value =${priceAdder} >${priceAdder}</span></td>
@@ -121,13 +107,9 @@ let shippingpercent = 0
 express.checked ? shippingpercent = 17:
 premium.checked ? shippingpercent = 15:
 standard.checked ? shippingpercent = 5:0;
-console.log(shippingpercent)
 let priceToApply =Number(document.getElementById("subtotalcant").textContent)
-console.log(priceToApply)
 let shippingprice = priceToApply*shippingpercent/100
-console.log(shippingprice)
 let totalPrice = shippingprice + priceToApply
-console.log(totalPrice)
 
 htmlContenttoAppendShippingValue =`
 USD<span id="subShippingValue" value =${shippingprice} >${shippingprice}</span></td>
@@ -141,7 +123,7 @@ document.getElementById("totalTotal").innerHTML=htmlContenttoAppendTotalPrice
 
 
 }
-// Aqui sepremium establece el valor de todos los input fijos en una variable
+// Aqui se establece el valor de todos los input fijos en una variable
 
 //Tipo de envio
 let express = document.getElementById("express")
@@ -219,7 +201,7 @@ function checkDeliv() {
     standard.addEventListener("input", function(e){checkDeliv()});
 }
 
-// Esta funcion recorre todas las cantidades y si estan vacias o son menores a cero las invalida
+// Esta funcion recorre todas las cantidades les asigna la funcion de verificar al estar cambiar de valor
 function checkQuantity(){
 
  
@@ -298,8 +280,13 @@ function payIntVal () {
 
     if(creditCard.checked == true){
         checkEmptyInput(cardNumber)
+        cardNumber.addEventListener("input", () => checkEmptyInput(cardNumber));
         checkEmptyInput(segCod)
+        segCod.addEventListener("input", () => checkEmptyInput(segCod));
         checkEmptyInput(expDate)
+        expDate.addEventListener("input", () => checkEmptyInput(expDate));
+
+
         accountNumber.classList.remove("is-invalid")
         accountNumber.classList.remove("is-valid")
 
@@ -308,6 +295,9 @@ function payIntVal () {
     }  
     if(bankTrans.checked == true){
         checkEmptyInput(accountNumber)
+        accountNumber.addEventListener("input", () => checkEmptyInput(accountNumber));
+
+
         cardNumber.classList.remove("is-invalid")
         cardNumber.classList.remove("is-valid")
 
@@ -361,11 +351,9 @@ function finalVer(){
     <p>Has comprado con éxito.</p>
     </div>`
  totMiss = document.getElementsByClassName("is-invalid")  
- console.log(totMiss.length)
  if(totMiss.length ==0){
-    console.log('bien hecho')
     document.getElementById("payMetAlert").innerHTML = succbuy
- }else{console.log('mal hecho')}
+ }
 }
 
 // Esta funcion controla que controla todo al comprar
@@ -377,17 +365,20 @@ function totalVal () {
     payShowAlerts()
     finalVer()
 }
-// Esta funcion elimina un elemento en un arreglo llamado e una determinada posicion
-function supElem (i, pArray) {
-    console.log(currentCart_2)
-    pArray.splice(i,1);
-    console.log(currentCart_2)
-    setcart()
-    location.href = "cart.html";
 
-}
 // Esta sube nuevamente el carro
 function setcart(){
     currentCart_3=JSON.stringify(currentCart_2)
     localStorage.setItem("oldcart", currentCart_3);
         }
+
+
+// Esta funcion elimina un elemento en un arreglo  y posicion determinados  
+//guarda los cambios en el cart del local storage y reinicia la pagina para que se muestren los cambios
+
+function supElem (i, pArray) {
+    pArray.splice(i,1);
+    setcart()
+    location.href = "cart.html";
+
+}
